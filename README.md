@@ -1,4 +1,4 @@
-[![Build status](https://github.com/navikt/padm2pdfgen/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)](https://github.com/navikt/padm2pdfgen/workflows/Deploy%20to%20dev%20and%20prod/badge.svg)
+![Build status](https://github.com/navikt/padm2pdfgen/workflows/main/badge.svg?branch=master)
 # padm2pdfgen
 Repository for templates for generating PDF's from dialogmeldinger.
 
