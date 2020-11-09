@@ -1,0 +1,33 @@
+{{#if dialogmelding.foresporselFraSaksbehandlerForesporselSvar }}
+    <h3>Svar på forespørsel </h3>
+    <table>
+        <tr>
+            <th>Type</th>
+        </tr>
+        <tr>
+            <td class="cellBottom">{{ dialogmelding.foresporselFraSaksbehandlerForesporselSvar.teamakode.dn }}</td>
+        </tr>
+
+        <tr>
+            <th>Pasient-fnr</th>
+        </tr>
+        <tr>
+            <td class="cellBottom">{{ pasientFnr }}</td>
+        </tr>
+
+        <tr>
+            <th>Pasientnavn</th>
+        </tr>
+        <tr>
+            <td class="cellBottom">{{ pasientNavn }}</td>
+        </tr>
+
+        <tr>
+            <th>Notat/Svar</th>
+        </tr>
+        <tr>
+            <td>{{ dialogmelding.foresporselFraSaksbehandlerForesporselSvar.tekstNotatInnhold }}</td>
+        </tr>
+
+    </table>
+{{/if}}

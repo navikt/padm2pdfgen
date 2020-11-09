@@ -42,8 +42,8 @@
         "arenaNotatKode": "",
         "arenaNotatTittel": ""
       },
-      "tekstNotatInnhold": "Pasieten har masse info her",
-      "dokIdNotat": "OD1812186729156",
+      "tekstNotatInnhold": "Pasienten har masse info her",
+      "dokIdNotat": "",
       "datoNotat": "2020-05-19T08:24:07.139419"
     },
     "henvendelseFraLegeHenvendelse": {
@@ -102,5 +102,6 @@
       }
     ]
   },
-  "pasientFnr": "3214141414"
+  "pasientFnr": "3214141414",
+  "pasientNavn": "Koronasen, Kovid"
 }
