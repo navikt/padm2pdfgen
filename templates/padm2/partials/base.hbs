@@ -70,17 +70,17 @@
     </tr>
 
     <tr>
-        <th>Dokumentreferanse</th>
-    </tr>
-    <tr>
-        {{> padm2/partials/dokumentreferanse }}
-    </tr>
-
-    <tr>
-        <th>Fra</th>
+        <th>Fra behandlende lege</th>
     </tr>
     <tr>
         <td class="cellBottom">{{ dialogmelding.navnHelsepersonell }}</td>
+    </tr>
+
+    <tr>
+        <th>Signerende lege</th>
+    </tr>
+    <tr>
+        <td class="cellBottom">Må sendes fra Padm2</td>
     </tr>
 
     <tr>
@@ -91,11 +91,12 @@
     </tr>
 
     <tr>
-        <th>Signatur navn</th>
+        <th>Dokumentreferanse</th>
     </tr>
     <tr>
-        <td>Må sendes fra Padm2</td>
+        {{> padm2/partials/dokumentreferanse }}
     </tr>
+
 </table>
 
 {{> padm2/partials/innkallingmoterespons }}
