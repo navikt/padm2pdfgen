@@ -37,3 +37,5 @@ spec:
     requests:
       cpu: 50m
       memory: 128Mi
+  ingresses:
+    - "https://padm2pdfgen.dev.intern.nav.no"
