@@ -35,6 +35,18 @@ jobs:
           CLUSTER: dev-fss
           RESOURCE: naiserator.yaml
 
+  deploy-dev-gcp:
+    name: Deploy to NAIS Dev-gcp
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: naiserator-gcp.yaml
+
   deploy-prod:
     if: github.ref == 'refs/heads/master'
     name: Deploy to NAIS Prod-fss
