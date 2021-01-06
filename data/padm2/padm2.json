@@ -82,7 +82,7 @@
       },
       "rollerRelatertNotat": null
     },
-    "navnHelsepersonell": "Per Hansen",
+    "navnHelsepersonell": "Hansen, Per",
     "signaturDato": "2017-11-05T00:00:00"
   },
   "validationResult": {
@@ -103,5 +103,6 @@
     ]
   },
   "pasientFnr": "3214141414",
-  "pasientNavn": "Koronasen, Kovid"
+  "pasientNavn": "Koronasen, Kovid",
+  "navnSignerendeLege": "Sjefslege, Bossie"
 }
