@@ -34,6 +34,7 @@ jobs:
           RESOURCE: naiserator.yaml
 
   deploy-dev-gcp:
+    if: github.ref == 'refs/heads/master'
     name: Deploy to NAIS Dev-gcp
     needs: build
     runs-on: ubuntu-latest
