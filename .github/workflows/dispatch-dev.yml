@@ -1,36 +1,62 @@
-# This is a basic workflow to help you get started with Actions
+name: Deploy to dev-fss/-gcp
 
-name: CI
-
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      gitCommit:
+        description: 'Complete git commit to deploy'
+        required: true
+        default: ''
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/padm2pdfgen:${{ github.event.inputs.gitCommit }}
+
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    name: Check if built, if not, Checkout code and create docker tag
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: check if built
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          manifest=$(curl -X GET "https://docker.pkg.github.com/v2/navikt/padm2pdfgen/padm2pdfgen/manifests/${{ github.event.inputs.gitCommit }}" -u "$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}" | jq '.')
+          echo ${manifest}
+          found=$(echo "$manifest" | grep "schemaVersion" || true)
+          echo ${found}
+          echo "found_image=$found" >> $GITHUB_ENV
+      - name: Checkout code
+        if: ${{ !env.found_image }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.gitCommit }}
+      - name: Build and publish Docker image if not already done
+        if: ${{ !env.found_image }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          docker build --tag ${IMAGE} .
+          docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+          docker push ${IMAGE}
+          echo ${IMAGE}
+  deploy-dev:
+    name: Deploy to NAIS Dev-fss
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-fss
+          RESOURCE: naiserator.yaml
+
+  deploy-dev-gcp:
+    name: Deploy to NAIS Dev-gcp
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: naiserator-dev-gcp.yaml
