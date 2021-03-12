@@ -42,7 +42,7 @@
         "arenaNotatKode": "",
         "arenaNotatTittel": ""
       },
-      "tekstNotatInnhold": "Pasienten har masse info her",
+      "tekstNotatInnhold": "Pasienten har masse info her\n  -Vedlegg 1: Epikrise\n  -Vedlegg 2: Røntgen-bilde\n -Vedlegg 3: Støvsugermanual",
       "dokIdNotat": "",
       "datoNotat": "2020-05-19T08:24:07.139419"
     },
@@ -55,7 +55,7 @@
         "arenaNotatKode": "32",
         "arenaNotatTittel": "Henvendelse fra lege"
       },
-      "tekstNotatInnhold": "Jeg er klar 12.30. Mvh, Lege legsesn",
+      "tekstNotatInnhold": "Jeg er klar 12.30.\n Mvh, Lege legsesn",
       "dokIdNotat": "",
       "foresporsel": {
         "typeForesp": {
