@@ -22,6 +22,15 @@
             <td class="cellBottom">{{ pasientNavn }}</td>
         </tr>
 
+        {{#if antallVedlegg }}
+            <tr>
+                <th>Antall vedlegg</th>
+            </tr>
+            <tr>
+                <td class="cellBottom">{{ antallVedlegg }}</td>
+            </tr>
+        {{/if}}
+
         <tr>
             <th>Notat/Svar</th>
         </tr>
