@@ -39,3 +39,9 @@ spec:
       memory: 128Mi
   ingresses:
     - "https://padm2pdfgen.intern.nav.no"
+  accessPolicy:
+    inbound:
+      rules:
+        - application: padm2
+          namespace: teamsykefravr
+          cluster: prod-gcp
