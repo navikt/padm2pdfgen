@@ -13,13 +13,13 @@ spec:
     max: 4
     cpuThresholdPercentage: 70
   liveness:
-    path: /is_alive
+    path: /internal/is_alive
     timeout: 1
     initialDelay: 5
     periodSeconds: 5
     failureThreshold: 30
   readiness:
-    path: /is_alive
+    path: /internal/is_alive
     timeout: 1
     initialDelay: 5
     periodSeconds: 5
@@ -27,7 +27,7 @@ spec:
   leaderElection: false
   prometheus:
     enabled: true
-    path: /prometheus
+    path: /internal/prometheus
   istio:
     enabled: false
   resources:
@@ -36,8 +36,6 @@ spec:
     requests:
       cpu: 50m
       memory: 128Mi
-  ingresses:
-    - "https://padm2pdfgen.intern.dev.nav.no"
   accessPolicy:
     inbound:
       rules:
