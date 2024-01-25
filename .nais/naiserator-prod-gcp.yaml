@@ -28,8 +28,6 @@ spec:
   prometheus:
     enabled: true
     path: /internal/prometheus
-  istio:
-    enabled: false
   resources:
     limits:
       memory: 1024Mi
